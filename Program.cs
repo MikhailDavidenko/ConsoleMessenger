@@ -6,7 +6,9 @@ namespace ConsoleMessenger
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Console Messenger");
+            Console.WriteLine("===========Console Messenger============");
+            Message msg = new Message();
+            Console.WriteLine(msg.ToString());
             Console.ReadKey();
         }
     }
