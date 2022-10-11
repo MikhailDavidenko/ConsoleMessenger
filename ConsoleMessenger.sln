@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleMessenger", "ConsoleMessenger.csproj", "{B8CB76FC-98B6-4036-BF04-1D2694768E59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessengerServer", "MessengerServer\MessengerServer.csproj", "{BD15E793-02EB-4C4F-A3F2-5598B349650E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleMessenger", "ConsoleMessenger\ConsoleMessenger.csproj", "{34AC989C-1782-4440-9292-6879BF0CE5FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B8CB76FC-98B6-4036-BF04-1D2694768E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8CB76FC-98B6-4036-BF04-1D2694768E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8CB76FC-98B6-4036-BF04-1D2694768E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8CB76FC-98B6-4036-BF04-1D2694768E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD15E793-02EB-4C4F-A3F2-5598B349650E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD15E793-02EB-4C4F-A3F2-5598B349650E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD15E793-02EB-4C4F-A3F2-5598B349650E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD15E793-02EB-4C4F-A3F2-5598B349650E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34AC989C-1782-4440-9292-6879BF0CE5FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34AC989C-1782-4440-9292-6879BF0CE5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34AC989C-1782-4440-9292-6879BF0CE5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34AC989C-1782-4440-9292-6879BF0CE5FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
