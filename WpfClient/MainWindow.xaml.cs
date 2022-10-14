@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WpfClient
 {
@@ -20,9 +21,42 @@ namespace WpfClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static int MessageId = 0;
+        private static string UserName;
+        private static MessengerClientCons Api = new MessengerClientCons();
+        DispatcherTimer timer;
         public MainWindow()
         {
             InitializeComponent();
+            timer = new DispatcherTimer() { Interval = new TimeSpan(0, 0, 1) };
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            var getMessage = new Func<Task>(async () =>
+            {
+                Message msg = await Api.GetMessageHttpAsync(MessageId);
+                while (msg != null)
+                {
+                    MessagesLB.Items.Add(msg);
+                    MessageId++;
+                    msg = await Api.GetMessageHttpAsync(MessageId);
+                }
+            });
+            getMessage.Invoke();
+        }
+
+        private void SendBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string UserN = UserField.Text;
+            string MessageT = MessageField.Text;
+            if (UserN.Length > 0 && MessageT.Length > 0)
+            {
+                Message msg = new Message(UserN, MessageT, DateTime.Now);
+                Api.PostMessage(msg);
+            }
         }
     }
 }

@@ -7,13 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox x:Name="MessagesLB" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFFFFDFD" Margin="10,10,10,103"/>
-        <TextBox x:Name="UserField" HorizontalAlignment="Left" Margin="10,356,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="212"/>
-        <TextBox x:Name="MessageField" HorizontalAlignment="Left" Margin="10,397,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="629"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="763*"/>
+            <ColumnDefinition Width="37*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="MessagesLB" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFFFFDFD" Margin="10,10,10,103" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="UserField" HorizontalAlignment="Left" Margin="10,356,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212"/>
+        <TextBox x:Name="MessageField" HorizontalAlignment="Left" Margin="10,397,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="629"/>
         <Label Content="User" HorizontalAlignment="Left" Margin="25,331,0,0" VerticalAlignment="Top"/>
         <Label Content="Message" HorizontalAlignment="Left" Margin="25,371,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="SendBtn" Content="Send" HorizontalAlignment="Left" Margin="681,344,0,0" VerticalAlignment="Top" Height="71" Width="109"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="824,270,0,0" VerticalAlignment="Top" Width="0"/>
+        <Button x:Name="SendBtn" Content="Send" HorizontalAlignment="Left" Margin="681,344,0,0" VerticalAlignment="Top" Height="71" Width="109" Click="SendBtn_Click" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
