@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace ConsoleMessenger
+namespace ConsoleClent
 {
     internal class Program
     {

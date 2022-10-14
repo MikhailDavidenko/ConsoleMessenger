@@ -5,7 +5,11 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessengerServer", "MessengerServer\MessengerServer.csproj", "{BD15E793-02EB-4C4F-A3F2-5598B349650E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleMessenger", "ConsoleMessenger\ConsoleMessenger.csproj", "{34AC989C-1782-4440-9292-6879BF0CE5FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleClient", "ConsoleMessenger\ConsoleClient.csproj", "{34AC989C-1782-4440-9292-6879BF0CE5FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsClient", "WinFormsClient\WinFormsClient.csproj", "{9E4412E5-9E31-4E25-9D3D-A24CEF145F67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfClient", "WpfClient\WpfClient.csproj", "{A3FFBDEA-2453-480D-9295-9DE0BB08D11B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{34AC989C-1782-4440-9292-6879BF0CE5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34AC989C-1782-4440-9292-6879BF0CE5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34AC989C-1782-4440-9292-6879BF0CE5FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E4412E5-9E31-4E25-9D3D-A24CEF145F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E4412E5-9E31-4E25-9D3D-A24CEF145F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E4412E5-9E31-4E25-9D3D-A24CEF145F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E4412E5-9E31-4E25-9D3D-A24CEF145F67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3FFBDEA-2453-480D-9295-9DE0BB08D11B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3FFBDEA-2453-480D-9295-9DE0BB08D11B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3FFBDEA-2453-480D-9295-9DE0BB08D11B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3FFBDEA-2453-480D-9295-9DE0BB08D11B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

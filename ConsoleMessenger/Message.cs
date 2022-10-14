@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleMessenger
+namespace ConsoleClent
 {
     [Serializable]
     public class Message

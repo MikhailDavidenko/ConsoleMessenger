@@ -5,7 +5,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace ConsoleMessenger
+namespace ConsoleClent
 {
     public class MessengerClientCons
     {

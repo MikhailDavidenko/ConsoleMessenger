@@ -22,6 +22,7 @@ namespace MessengerServer.Controllers
             if (id >= 0 && ListOfMessages.Count > id)
             {
                 outputText = JsonConvert.SerializeObject(ListOfMessages[id]).ToString();
+                Console.WriteLine("New GET Request");
             }
             Console.WriteLine(outputText);
             return outputText;
