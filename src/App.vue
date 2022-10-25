@@ -1,15 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Hello Vue World"/>
+  <v-app>
+    <v-main>
+      <ChatPage/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ChatPage from './components/ChatPage.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ChatPage
   }
 }
 </script>
@@ -22,5 +25,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  
 }
+*{
+  background-color: rgb(236, 217, 248);
+ }
 </style>
