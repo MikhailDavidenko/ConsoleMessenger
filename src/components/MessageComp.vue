@@ -39,7 +39,7 @@
   <script>
   import API from '../api/api';
   export default {
-  name: "Message",
+  name: "MessageCom",
     data: () => {
       return {
         UserName: '',
@@ -52,7 +52,7 @@
         lastMsgID: 0,
       }
     },
-    mounted() {
+    /* mounted() {
       this.UserName = "Login"
       this.intervalCtx = setInterval(async () => {
         try {
@@ -65,7 +65,7 @@
           console.error(e)
         }
       }, 1000)
-    },
+    }, */
     methods: {
       // Реакция на кнопку отправки
       async onSendClick() {
@@ -79,9 +79,9 @@
       },
     },
     // После уничтожения компонента
-    destroyed() {
-      clearInterval(this.intervalCtx)
-    }
+    //destroyed() {
+    //  clearInterval(this.intervalCtx)
+   // }
   }
   </script>
   

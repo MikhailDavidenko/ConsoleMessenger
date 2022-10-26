@@ -1,8 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <HelloWorld/>
-      <ScorerComp/>
+      <MessageComponent/>
     </v-main>
     
   </v-app>
@@ -10,19 +9,18 @@
 
 <script>
 
-import HelloWorld from './components/HelloWorld.vue'
-import ScorerComp from './components/ScorerComp.vue'
+import MessageComponent from './components/MessageComp.vue'
+
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
-    ScorerComp
+    MessageComponent,
   },
 
-  data: () => ({
+  //data: () => ({
     //
-  }),
+  //}),
 }
 </script>
