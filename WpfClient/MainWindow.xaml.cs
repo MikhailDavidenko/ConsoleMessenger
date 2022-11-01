@@ -37,12 +37,14 @@ namespace WpfClient
         {
             var getMessage = new Func<Task>(async () =>
             {
-                Message msg = await Api.GetMessageHttpAsync(MessageId);
-                while (msg != null)
+                List<Message> msg = await Api.GetMessageHttpAsync(MessageId);
+                if (msg != null)
                 {
-                    MessagesLB.Items.Add(msg);
-                    MessageId++;
-                    msg = await Api.GetMessageHttpAsync(MessageId);
+                    for (int i = 0; i < msg.Count; i++)
+                    {
+                        MessagesLB.Items.Add(msg[i]);
+                        MessageId++;
+                    }
                 }
             });
             getMessage.Invoke();

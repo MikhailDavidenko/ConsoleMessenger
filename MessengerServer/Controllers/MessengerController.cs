@@ -17,26 +17,35 @@ namespace MessengerServer.Controllers
     public class MessengerController : ControllerBase
     {
         static List<Message> ListOfMessages = new List<Message>();
+        //public MessengerController()
+        //{
+        //    for (byte i = 0; i < 5; i++) ListOfMessages.Add(new Message());
+            
+        //}
         
         // GET api/<MessengerController>
         [HttpGet("{id}")]
-        public async Task<string[]> Get(int id)
+        public async Task<List<Message>> Get(int id)
         {
-            for (byte i = 0; i < 5; i++) ListOfMessages.Add(new Message());
             string[] outputText = new string[ListOfMessages.Count-id];
 
 
             if (id >= 0 && ListOfMessages.Count > id)
             {
-                int counter = 0;
-                for(int i = id; i < ListOfMessages.Count; i++)
+                //int counter = 0;
+                //for(int i = id; i < ListOfMessages.Count; i++)
+                //{
+                //    outputText[counter] = ListOfMessages[i].ToString();
+
+                //    counter++;
+                //}
+                List < Message > messages= new List<Message>();
+                for (int i = id; i < ListOfMessages.Count; i++)
                 {
-                    outputText[counter] = ListOfMessages[i].ToString();
-                    
-                    counter++;
+                    messages.Add(ListOfMessages[i]);
                 }
                 Console.WriteLine("New get request");
-                return outputText;
+                return messages;
             }
 
 
@@ -77,10 +86,13 @@ namespace MessengerServer.Controllers
             {
                 return BadRequest();
             }
-
-            ListOfMessages.Add(msg);
-            Console.WriteLine("Add new message");
-            return Ok();
+            try
+            {
+                ListOfMessages.Add(msg);
+                Console.WriteLine("Add new message");
+                return Ok();
+            }catch(Exception ex) {Console.WriteLine(ex.ToString()); return BadRequest(); }
+            
         }
     }
 }

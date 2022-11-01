@@ -6,19 +6,21 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Interop;
 
 namespace WpfClient
 {
     public class MessengerClientCons
     {        
         private static readonly HttpClient client = new HttpClient();
-        public async Task<Message> GetMessageHttpAsync(int MessageId)
+        public async Task<List<Message>> GetMessageHttpAsync(int MessageId)
         {
-            var responseStr = await client.GetStringAsync("http://localhost:5000/api/messenger/" + MessageId);
-            if (responseStr != null)
+            var responseArr = await client.GetStringAsync("http://localhost:5000/api/messenger/" + MessageId);
+            if (responseArr != null)
             {
-                Message deserializeMsg = JsonConvert.DeserializeObject<Message>(responseStr);
-                return deserializeMsg;
+                var messages = JsonConvert.DeserializeObject<List<Message>>(responseArr);
+                
+                return messages;
             }
             return null;
         }
