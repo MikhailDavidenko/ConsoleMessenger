@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using MessengerServer.Models;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Text.Json;
+using System.IO;
+using System.Text;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,19 +17,56 @@ namespace MessengerServer.Controllers
     public class MessengerController : ControllerBase
     {
         static List<Message> ListOfMessages = new List<Message>();
+        
         // GET api/<MessengerController>
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<string[]> Get(int id)
         {
-            string outputText = "Not found";
+            for (byte i = 0; i < 5; i++) ListOfMessages.Add(new Message());
+            string[] outputText = new string[ListOfMessages.Count-id];
+
 
             if (id >= 0 && ListOfMessages.Count > id)
             {
-                outputText = JsonConvert.SerializeObject(ListOfMessages[id]).ToString();
-                Console.WriteLine("New GET Request");
+                int counter = 0;
+                for(int i = id; i < ListOfMessages.Count; i++)
+                {
+                    outputText[counter] = ListOfMessages[i].ToString();
+                    
+                    counter++;
+                }
+                Console.WriteLine("New get request");
+                return outputText;
             }
-            Console.WriteLine(outputText);
-            return outputText;
+
+
+
+            //Async
+            //if (id >= 0 && ListOfMessages.Count > id)
+            //{
+            //    string[] textJson = new string[1];
+            //    Console.WriteLine("New GET Request");
+            //    using (var stream = new MemoryStream())
+            //    {
+            //        await JsonSerializer.SerializeAsync(stream, ListOfMessages[id], ListOfMessages[id].GetType());
+            //        stream.Position = 0;
+            //        using var reader = new StreamReader(stream);
+            //        textJson[0] = await reader.ReadToEndAsync();
+            //        return textJson;
+            //    }
+            //}
+
+            //UTF8Bytes
+            //if (id >= 0 && ListOfMessages.Count > id)
+            //{
+            //    string[] textJson = new string[1];
+            //    Console.WriteLine("New GET Request");
+            //    //await JsonSerializer.SerializeAsync(stream, ListOfMessages[id], ListOfMessages[id].GetType());
+            //    textJson[0] = Encoding.UTF8.GetString(JsonSerializer.SerializeToUtf8Bytes(ListOfMessages[id], ListOfMessages[id].GetType()));
+            //    return textJson;
+            //}
+
+            return null;
         }
 
         // POST api/<MessengerController>
