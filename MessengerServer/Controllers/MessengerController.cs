@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MessengerServer.Models;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using MessengerServer.Interfaces;
+//using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
@@ -17,17 +18,17 @@ namespace MessengerServer.Controllers
     public class MessengerController : ControllerBase
     {
         static List<Message> ListOfMessages = new List<Message>();
-        //public MessengerController()
-        //{
-        //    for (byte i = 0; i < 5; i++) ListOfMessages.Add(new Message());
-            
-        //}
-        
+        private IMessages MessageRep;
+        public MessengerController(IMessages messages)
+        {
+            MessageRep = messages;
+        }
+
         // GET api/<MessengerController>
         [HttpGet("{id}")]
-        public async Task<List<Message>> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            string[] outputText = new string[ListOfMessages.Count-id];
+            
 
 
             if (id >= 0 && ListOfMessages.Count > id)
@@ -39,16 +40,21 @@ namespace MessengerServer.Controllers
 
                 //    counter++;
                 //}
-                List < Message > messages= new List<Message>();
-                for (int i = id; i < ListOfMessages.Count; i++)
+                List < Message > msgs= new List<Message>();
+                Task<Message> m = MessageRep.GetMessages(id);
+                int counter = id;
+                do
                 {
-                    messages.Add(ListOfMessages[i]);
-                }
+                    m = MessageRep.GetMessages(id);
+                    if (m != null)
+                    {
+                        msgs.Add(await m);
+                    }
+                } while (m != null);
                 Console.WriteLine("New get request");
-                return messages;
+                
+                return Ok(msgs);
             }
-
-
 
             //Async
             //if (id >= 0 && ListOfMessages.Count > id)
@@ -65,22 +71,14 @@ namespace MessengerServer.Controllers
             //    }
             //}
 
-            //UTF8Bytes
-            //if (id >= 0 && ListOfMessages.Count > id)
-            //{
-            //    string[] textJson = new string[1];
-            //    Console.WriteLine("New GET Request");
-            //    //await JsonSerializer.SerializeAsync(stream, ListOfMessages[id], ListOfMessages[id].GetType());
-            //    textJson[0] = Encoding.UTF8.GetString(JsonSerializer.SerializeToUtf8Bytes(ListOfMessages[id], ListOfMessages[id].GetType()));
-            //    return textJson;
-            //}
-
-            return null;
+            return BadRequest();
         }
+
+       
 
         // POST api/<MessengerController>
         [HttpPost]
-        public IActionResult Post([FromBody] Message msg)
+        public IActionResult AddMessage([FromBody] Message msg)
         {
             if (msg == null)
             {
@@ -94,5 +92,49 @@ namespace MessengerServer.Controllers
             }catch(Exception ex) {Console.WriteLine(ex.ToString()); return BadRequest(); }
             
         }
+
+        //UTF8
+        //[HttpGet]
+        //[Route("GetM/{id}")]
+        //public  string GetMes(int id)
+        //{
+        //    string messages = "";
+
+
+        //    //UTF8Bytes
+        //    if (id >= 0 && ListOfMessages.Count > id)
+        //    {
+        //        Console.WriteLine("New GET Request");
+        //        //await JsonSerializer.SerializeAsync(stream, ListOfMessages[id], ListOfMessages[id].GetType());
+        //        for (int i = id; i < ListOfMessages.Count; i++)
+        //        {
+        //            messages += Encoding.UTF8.GetString(JsonSerializer.SerializeToUtf8Bytes(ListOfMessages[id], ListOfMessages[id].GetType()));
+        //        }
+        //        ListOfMessages.Clear();
+        //        return messages;
+        //    }
+        //    ListOfMessages.Clear();
+        //    return null;
+        //}
+        //[HttpGet]
+        //[Route("New/{id}")]
+        //public string GetNew(int id)
+        //{
+        //    string messages = "";
+
+        //Newtonsoft.Json
+        //    if (id >= 0 && ListOfMessages.Count > id)
+        //    {
+        //        Console.WriteLine("New GET Request");
+        //        for (int i = id; i < ListOfMessages.Count; i++)
+        //        {
+        //            messages+=Newtonsoft.Json.JsonConvert.SerializeObject(ListOfMessages[i]);
+        //        }
+        //        ListOfMessages.Clear();
+        //        return messages;
+        //    }
+        //    ListOfMessages.Clear();
+        //    return null;
+        //}
     }
 }
