@@ -26,31 +26,26 @@ namespace MessengerServer.Controllers
 
         // GET api/<MessengerController>
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public IActionResult Get(int id)
         {
             
 
 
-            if (id >= 0 && ListOfMessages.Count > id)
+            if (id >= 0)
             {
-                //int counter = 0;
-                //for(int i = id; i < ListOfMessages.Count; i++)
-                //{
-                //    outputText[counter] = ListOfMessages[i].ToString();
-
-                //    counter++;
-                //}
+               
                 List < Message > msgs= new List<Message>();
-                Task<Message> m = MessageRep.GetMessages(id);
-                int counter = id;
-                do
-                {
-                    m = MessageRep.GetMessages(id);
-                    if (m != null)
-                    {
-                        msgs.Add(await m);
-                    }
-                } while (m != null);
+                //Message m;
+                //int counter = id;
+                //do
+                //{
+                //    m = MessageRep.GetMessages(id);
+                //    if (m != null)
+                //    {
+                //        msgs.Add(m);
+                //    }
+                //} while (m != null);
+                msgs = MessageRep.GetMessages(id);
                 Console.WriteLine("New get request");
                 
                 return Ok(msgs);
@@ -86,7 +81,8 @@ namespace MessengerServer.Controllers
             }
             try
             {
-                ListOfMessages.Add(msg);
+                //ListOfMessages.Add(msg);
+                MessageRep.AddMessage(msg);
                 Console.WriteLine("Add new message");
                 return Ok();
             }catch(Exception ex) {Console.WriteLine(ex.ToString()); return BadRequest(); }

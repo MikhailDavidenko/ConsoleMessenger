@@ -6,7 +6,7 @@ namespace MessengerServer.Interfaces
 {
     public interface IMessages
     {
-        Task<Message> GetMessages(int id);
+        List<Message> GetMessages(int id);
         Task AddMessage(Message msg);
 
     }
